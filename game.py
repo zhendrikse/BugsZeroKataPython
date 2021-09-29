@@ -48,7 +48,6 @@ class Game:
         if self.inPenaltyBox[self.currentPlayer]:
             if roll % 2 != 0:
                 self.isGettingOutOfPenaltyBox = True
-
                 print(
                     self.players[self.currentPlayer] +
                     " is getting out of the penalty box")
