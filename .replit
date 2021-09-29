@@ -1,1 +1,1 @@
-run = "python game_runner.py"
+run = "pytest"

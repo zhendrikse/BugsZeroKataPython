@@ -1,5 +1,5 @@
 from random import seed, randrange
-from game import Game
+from game import Game, Player
 
 
 class GameRunner:
@@ -13,7 +13,7 @@ class GameRunner:
         game.play_game(randrange(5) + 1)
 
     def play_game(self, rand:int) -> None:
-        game = Game('Chet', 'Pat', ['Sue'])
+        game = Game(Player('Chet'), Player('Pat'), [Player('Sue')])
 
         while True:
             game.roll(rand)
