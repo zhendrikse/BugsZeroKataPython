@@ -129,3 +129,15 @@ class Questions:
         print(self.rockQuestions.popleft())
 ```
   
+## Fix bug coins credited to wrong player
+
+Apply the DRY principle to the logic to determine the next player:
+
+```python
+def next_player(self) -> None:
+  self.currentPlayer += 1
+  if self.currentPlayer == len(self.players):
+      self.currentPlayer = 0
+```
+
+Now you see that in `was_correctly_answered(self)` coins can be credited to a wrong player, as the next player is determined _first_ after which the coins are credited.

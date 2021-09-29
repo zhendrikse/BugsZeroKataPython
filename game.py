@@ -73,19 +73,20 @@ class Game:
         return True
 
     def roll(self, roll: int) -> None:
-        print(repr(self.players[self.currentPlayer]) + " is the current player")
+        current_player = self.players[self.currentPlayer]
+        print(repr(current_player) + " is the current player")
         print("They have rolled a " + str(roll))
 
-        if self.players[self.currentPlayer].inPenaltyBox:
+        if current_player.inPenaltyBox:
             if roll % 2 != 0:
                 self.isGettingOutOfPenaltyBox = True
                 print(
-                    repr(self.players[self.currentPlayer]) +
+                    repr(current_player) +
                     " is getting out of the penalty box")
                 self.movePlayerAndAskQuestion(roll)
             else:
                 print(
-                    repr(self.players[self.currentPlayer]) +
+                    repr(current_player) +
                     " is not getting out of the penalty box")
                 self.isGettingOutOfPenaltyBox = False
         else:
@@ -100,13 +101,18 @@ class Game:
         print("The category is " + self.questions.currentCategory(current_player.rank))
         self.questions.ask_question(current_player.rank)
 
+    def next_player(self) -> None:
+      self.currentPlayer += 1
+      if self.currentPlayer == len(self.players):
+          self.currentPlayer = 0
+
     def was_correctly_answered(self) -> bool:
         if self.players[self.currentPlayer].inPenaltyBox:
             if self.isGettingOutOfPenaltyBox:
                 print("Answer was correct!!!!")
-                self.currentPlayer += 1
-                if self.currentPlayer == len(self.players):
-                    self.currentPlayer = 0
+
+                self.next_player()
+
                 self.players[self.currentPlayer].add_coin()
                 print(
                     repr(self.players[self.currentPlayer]) + " now has " +
@@ -116,9 +122,7 @@ class Game:
 
                 return winner
             else:
-                self.currentPlayer += 1
-                if self.currentPlayer == len(self.players):
-                    self.currentPlayer = 0
+                self.next_player()
                 return True
         else:
             print("Answer was corrent!!!!")
@@ -128,9 +132,7 @@ class Game:
                 str(self.players[self.currentPlayer].purse) + " Gold Coins.")
 
             winner = self.didPlayerWin()
-            self.currentPlayer += 1
-            if self.currentPlayer == len(self.players):
-                self.currentPlayer = 0
+            self.next_player()
 
             return winner
 
@@ -141,9 +143,7 @@ class Game:
             " was sent to the penalty box")
         self.players[self.currentPlayer].inPenaltyBox = True
 
-        self.currentPlayer += 1
-        if self.currentPlayer == len(self.players):
-            self.currentPlayer = 0
+        self.next_player()
         return True
 
     def didPlayerWin(self) -> bool:
