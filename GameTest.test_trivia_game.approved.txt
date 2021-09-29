@@ -1,0 +1,1 @@
+b'game.py\ngame_runner.py\ngame_test.py\nGameTest.test_trivia_game.approved.txt\nGameTest.test_trivia_game.received.txt\npoetry.lock\n__pycache__\npyproject.toml\nREADME.md\n'
