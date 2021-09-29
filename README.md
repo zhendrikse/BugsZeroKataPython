@@ -6,7 +6,7 @@ Bugs are optional, they sneak into our code much thanks the design choices we do
 
 You'll practice reading code, looking for parts where it is likely that developers would create a bug if they extended the code. Whenever you've found such a weakness in the design your challenge is to strengthen the design in order to make that kind of bug very unlikely, or even impossible!
 
-## Repo and languagesp
+## Repo and languages
 
 This repository comes packaged with code that is totally tested, using the Golden Master technique. Pick the language of your choice in 
 this repository or contribute another one. In case there is none

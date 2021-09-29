@@ -1,4 +1,4 @@
-from random import randrange
+from random import seed, randrange
 from game import Game
 
 
@@ -9,6 +9,7 @@ class GameRunner:
     @staticmethod
     def main():
         game = GameRunner()
+        seed(30)
         game.play_game(randrange(5) + 1)
 
     def play_game(self, rand:int) -> None:
