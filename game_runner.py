@@ -1,34 +1,21 @@
-from random import randint
+from random import randrange
 from game import Game
 
-class GameRunner:
-  def __init__(self):
-    self.notAWinner: bool
+if __name__ == '__main__':
+    not_a_winner = False
 
-  @staticmethod
-  def main() -> None:
-    runner = GameRunner()
-    runner.playGame(randint(0, 10))
+    game = Game()
 
-
-  def playGame(self, rand: int) -> None:
-    aGame = Game()
-
-    aGame.add("Chet")
-    aGame.add("Pat")
-    aGame.add("Sue")
+    game.add('Chet')
+    game.add('Pat')
+    game.add('Sue')
 
     while True:
-      aGame.roll(randint(0, 5) + 1)
+        game.roll(randrange(5) + 1)
 
-      if rand == 7:
-        self.notAWinner = aGame.wrongAnswer()
-      else: 
-        self.notAWinner = aGame.wasCorrectlyAnswered()
-
-      if not self.notAWinner:
-        break
-
-
-if __name__ == "__main__":
-    GameRunner.main()
+        if randrange(9) == 7:
+            not_a_winner = game.wrong_answer()
+        else:
+            not_a_winner = game.was_correctly_answered()
+        
+        if not not_a_winner: break

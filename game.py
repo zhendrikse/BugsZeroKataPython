@@ -92,24 +92,24 @@ class Game:
         if self.places[self.currentPlayer] == 10: return "Sports"
         return "Rock"
 
-    def wasCorrectlyAnswered(self) -> bool:
+    def was_correctly_answered(self) -> bool:
         if self.inPenaltyBox[self.currentPlayer]:
             if self.isGettingOutOfPenaltyBox:
                 print("Answer was correct!!!!")
                 self.currentPlayer += 1
-                if self.currentPlayer == self.players.size():
+                if self.currentPlayer == len(self.players):
                     self.currentPlayer = 0
                 self.purses[self.currentPlayer] += 1
                 print(
-                    self.players.get(self.currentPlayer) + " now has " +
-                    self.purses[self.currentPlayer] + " Gold Coins.")
+                    self.players[self.currentPlayer] + " now has " +
+                    str(self.purses[self.currentPlayer]) + " Gold Coins.")
 
                 winner = self.didPlayerWin()
 
                 return winner
             else:
                 self.currentPlayer += 1
-                if self.currentPlayer == self.players.size():
+                if self.currentPlayer == len(self.players):
                     self.currentPlayer = 0
                 return True
         else:
@@ -126,7 +126,7 @@ class Game:
 
             return winner
 
-    def wrongAnswer(self) -> bool:
+    def wrong_answer(self) -> bool:
         print("Question was incorrectly answered")
         print(
             self.players[self.currentPlayer] +
