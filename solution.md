@@ -94,4 +94,38 @@ def currentCategory(self) -> str:
     else:
       return "Rock"
 ```
+
+## Make questions it's own class
+
+```python
+class Questions:
+  def __init__(self):        
+    # https://realpython.com/linked-lists-python/
+    self.popQuestions = deque()
+    self.scienceQuestions = deque()
+    self.sportsQuestions = deque()
+    self.rockQuestions = deque()
+    for i in range(50):
+      self.popQuestions.append("Pop Question " + str(i))
+      self.scienceQuestions.append("Science Question " + str(i))
+      self.sportsQuestions.append("Sports Question " + str(i))
+      self.rockQuestions.append("Rock Question " + str(i))
+
+  def currentCategory(self, index:int) -> str:
+    rank_category_map = ["Pop", "Science", "Sports", "Rock", "Pop", "Science", "Sports", "Rock", "Pop", "Science", "Sports"]
+    if index <= 10:
+      return rank_category_map[index]
+    else:
+      return "Rock"
+  
+  def ask_question(self, index:int) -> str:
+    if self.currentCategory(index) == "Pop":
+        print(self.popQuestions.popleft())
+    if self.currentCategory(index) == "Science":
+        print(self.scienceQuestions.popleft())
+    if self.currentCategory(index) == "Sports":
+        print(self.sportsQuestions.popleft())
+    if self.currentCategory(index) == "Rock":
+        print(self.rockQuestions.popleft())
+```
   

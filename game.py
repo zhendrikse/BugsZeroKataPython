@@ -22,41 +22,55 @@ class Player:
   def __repr__(self):
     return self.name
 
-class Game:
-    def __init__(self, player1: Player, player2: Player, others:[Player] = []):
-        self.players: List[Player] = []
-
+class Questions:
+    def __init__(self):        
         # https://realpython.com/linked-lists-python/
         self.popQuestions = deque()
         self.scienceQuestions = deque()
         self.sportsQuestions = deque()
         self.rockQuestions = deque()
+        for i in range(50):
+          self.popQuestions.append("Pop Question " + str(i))
+          self.scienceQuestions.append("Science Question " + str(i))
+          self.sportsQuestions.append("Sports Question " + str(i))
+          self.rockQuestions.append("Rock Question " + str(i))
+
+    def currentCategory(self, index:int) -> str:
+        rank_category_map = ["Pop", "Science", "Sports", "Rock", "Pop", "Science", "Sports", "Rock", "Pop", "Science", "Sports"]
+        if index <= 10:
+          return rank_category_map[index]
+        else:
+          return "Rock"
+    
+    def ask_question(self, index:int) -> str:
+        if self.currentCategory(index) == "Pop":
+            print(self.popQuestions.popleft())
+        if self.currentCategory(index) == "Science":
+            print(self.scienceQuestions.popleft())
+        if self.currentCategory(index) == "Sports":
+            print(self.sportsQuestions.popleft())
+        if self.currentCategory(index) == "Rock":
+            print(self.rockQuestions.popleft())
+
+class Game:
+    def __init__(self, player1: Player, player2: Player, others:[Player] = []):
+        self.players: List[Player] = []
+        self.questions = Questions()
 
         self.currentPlayer = 0
         self.isGettingOutOfPenaltyBox: bool = False
-
-        for i in range(50):
-            self.popQuestions.append("Pop Question " + str(i))
-            self.scienceQuestions.append("Science Question " + str(i))
-            self.sportsQuestions.append("Sports Question " + str(i))
-            self.rockQuestions.append(self.createRockQuestion(i))
         
         self.add(player1)
         self.add(player2)
         for player in others:
           self.add(player)
 
-    def createRockQuestion(self, index: int) -> str:
-        return "Rock Question " + str(index)
 
     def add(self, player: Player) -> bool:
         self.players.append(player)
         print(repr(player) + " was added")
         print("They are player number " + str(len(self.players)))
         return True
-
-    def howManyPlayers(self) -> int:
-        return len(self.players)
 
     def roll(self, roll: int) -> None:
         print(repr(self.players[self.currentPlayer]) + " is the current player")
@@ -78,30 +92,13 @@ class Game:
             self.movePlayerAndAskQuestion(roll)
 
     def movePlayerAndAskQuestion(self, roll: int) -> None:
-        self.players[self.currentPlayer].add_to_rank(roll)
-
-        print(repr(self.players[self.currentPlayer]) + "'s new location is " +
-            str(self.players[self.currentPlayer].rank))
-        print("The category is " + self.currentCategory())
-        self.askQuestion()
-
-    def askQuestion(self) -> None:
-        if self.currentCategory() == "Pop":
-            print(self.popQuestions.popleft())
-        if self.currentCategory() == "Science":
-            print(self.scienceQuestions.popleft())
-        if self.currentCategory() == "Sports":
-            print(self.sportsQuestions.popleft())
-        if self.currentCategory() == "Rock":
-            print(self.rockQuestions.popleft())
-
-    def currentCategory(self) -> str:
-        rank_category_map = ["Pop", "Science", "Sports", "Rock", "Pop", "Science", "Sports", "Rock", "Pop", "Science", "Sports"]
         current_player = self.players[self.currentPlayer]
-        if current_player.rank <= 10:
-          return rank_category_map[current_player.rank]
-        else:
-          return "Rock"
+        current_player.add_to_rank(roll)
+
+        print(repr(current_player) + "'s new location is " +
+            str(current_player.rank))
+        print("The category is " + self.questions.currentCategory(current_player.rank))
+        self.questions.ask_question(current_player.rank)
 
     def was_correctly_answered(self) -> bool:
         if self.players[self.currentPlayer].inPenaltyBox:
