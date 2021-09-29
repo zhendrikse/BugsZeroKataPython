@@ -57,7 +57,6 @@ class Game:
         self.players: List[Player] = []
         self.questions = Questions()
 
-        self.currentPlayer = 0
         self.isGettingOutOfPenaltyBox: bool = False
         
         self.add(player1)
@@ -65,6 +64,8 @@ class Game:
         for player in others:
           self.add(player)
 
+        self.currentPlayer = 0
+        self.current_player = self.players[self.currentPlayer]
 
     def add(self, player: Player) -> bool:
         self.players.append(player)
@@ -73,50 +74,49 @@ class Game:
         return True
 
     def roll(self, roll: int) -> None:
-        current_player = self.players[self.currentPlayer]
-        print(repr(current_player) + " is the current player")
+        print(repr(self.current_player) + " is the current player")
         print("They have rolled a " + str(roll))
 
-        if current_player.inPenaltyBox:
+        if self.current_player.inPenaltyBox:
             if roll % 2 != 0:
                 self.isGettingOutOfPenaltyBox = True
                 print(
-                    repr(current_player) +
+                    repr(self.current_player) +
                     " is getting out of the penalty box")
                 self.movePlayerAndAskQuestion(roll)
             else:
                 print(
-                    repr(current_player) +
+                    repr(self.current_player) +
                     " is not getting out of the penalty box")
                 self.isGettingOutOfPenaltyBox = False
         else:
             self.movePlayerAndAskQuestion(roll)
 
     def movePlayerAndAskQuestion(self, roll: int) -> None:
-        current_player = self.players[self.currentPlayer]
-        current_player.add_to_rank(roll)
+        self.current_player.add_to_rank(roll)
 
-        print(repr(current_player) + "'s new location is " +
-            str(current_player.rank))
-        print("The category is " + self.questions.currentCategory(current_player.rank))
-        self.questions.ask_question(current_player.rank)
+        print(repr(self.current_player) + "'s new location is " +
+            str(self.current_player.rank))
+        print("The category is " + self.questions.currentCategory(self.current_player.rank))
+        self.questions.ask_question(self.current_player.rank)
 
     def next_player(self) -> None:
       self.currentPlayer += 1
       if self.currentPlayer == len(self.players):
           self.currentPlayer = 0
+      self.current_player = self.players[self.currentPlayer]
 
     def was_correctly_answered(self) -> bool:
-        if self.players[self.currentPlayer].inPenaltyBox:
+        if self.current_player.inPenaltyBox:
             if self.isGettingOutOfPenaltyBox:
                 print("Answer was correct!!!!")
 
                 self.next_player()
 
-                self.players[self.currentPlayer].add_coin()
+                self.current_player.add_coin()
                 print(
-                    repr(self.players[self.currentPlayer]) + " now has " +
-                    str(self.players[self.currentPlayer].purse) + " Gold Coins.")
+                    repr(self.current_player) + " now has " +
+                    str(self.current_player.purse) + " Gold Coins.")
 
                 winner = self.didPlayerWin()
 
@@ -126,10 +126,10 @@ class Game:
                 return True
         else:
             print("Answer was corrent!!!!")
-            self.players[self.currentPlayer].add_coin()
+            self.current_player.add_coin()
             print(
-                repr(self.players[self.currentPlayer]) + " now has " +
-                str(self.players[self.currentPlayer].purse) + " Gold Coins.")
+                repr(self.current_player) + " now has " +
+                str(self.current_player.purse) + " Gold Coins.")
 
             winner = self.didPlayerWin()
             self.next_player()
@@ -139,12 +139,12 @@ class Game:
     def wrong_answer(self) -> bool:
         print("Question was incorrectly answered")
         print(
-            repr(self.players[self.currentPlayer]) +
+            repr(self.current_player) +
             " was sent to the penalty box")
-        self.players[self.currentPlayer].inPenaltyBox = True
+        self.current_player.inPenaltyBox = True
 
         self.next_player()
         return True
 
     def didPlayerWin(self) -> bool:
-        return not self.players[self.currentPlayer].has_won()
+        return not self.current_player.has_won()
