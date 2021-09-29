@@ -2,7 +2,7 @@ from typing import List
 from collections import deque
 
 class Game:
-    def __init__(self):
+    def __init__(self, player1: str, player2: str, others:[str] = []):
         self.players: List[str] = []
         self.places: List[int] = [0] * 6 
         self.purses: List[int] = [0] * 6
@@ -22,12 +22,14 @@ class Game:
             self.scienceQuestions.append("Science Question " + str(i))
             self.sportsQuestions.append("Sports Question " + str(i))
             self.rockQuestions.append(self.createRockQuestion(i))
+        
+        self.add(player1)
+        self.add(player2)
+        for player in others:
+          self.add(player)
 
     def createRockQuestion(self, index: int) -> str:
         return "Rock Question " + str(index)
-
-    def isPlayable(self) -> bool:
-        return (self.howManyPlayers() >= 2)
 
     def add(self, playerName: str) -> bool:
         self.players.append(playerName)

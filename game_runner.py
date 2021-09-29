@@ -13,11 +13,7 @@ class GameRunner:
         game.play_game(randrange(5) + 1)
 
     def play_game(self, rand:int) -> None:
-        game = Game()
-
-        game.add('Chet')
-        game.add('Pat')
-        game.add('Sue')
+        game = Game('Chet', 'Pat', ['Sue'])
 
         while True:
             game.roll(rand)
