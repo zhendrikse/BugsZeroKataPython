@@ -55,6 +55,8 @@ Finally, the `self.purses` can be removed.
 
 ## Each player his own rank
 
+Move rank (`places`) out of the `Game` class into the `Player` class:
+
 ```python
 class Player:
   def __init__(self, name: str):
@@ -76,3 +78,8 @@ class Player:
   def __repr__(self):
     return self.name
   ```
+
+## Each player its own penalty box status
+
+Move `inPenaltyBox` out of the `Game` class into the `Player` class. Next, note that there is no `isGettingOutOfPenaltyBox` variable for each player individually, which probably leads to the bug that once in, you'll never get out!
+  

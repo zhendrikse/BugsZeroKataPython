@@ -6,6 +6,7 @@ class Player:
     self.name = name
     self.purse = 0
     self.rank = 0
+    self.inPenaltyBox = False
 
   def add_coin(self) -> None:
     self.purse += 1
@@ -24,7 +25,6 @@ class Player:
 class Game:
     def __init__(self, player1: Player, player2: Player, others:[Player] = []):
         self.players: List[Player] = []
-        self.inPenaltyBox: List[bool] = [False] * 6
 
         # https://realpython.com/linked-lists-python/
         self.popQuestions = deque()
@@ -51,7 +51,6 @@ class Game:
 
     def add(self, player: Player) -> bool:
         self.players.append(player)
-        self.inPenaltyBox[self.howManyPlayers()] = False
         print(repr(player) + " was added")
         print("They are player number " + str(len(self.players)))
         return True
@@ -63,7 +62,7 @@ class Game:
         print(repr(self.players[self.currentPlayer]) + " is the current player")
         print("They have rolled a " + str(roll))
 
-        if self.inPenaltyBox[self.currentPlayer]:
+        if self.players[self.currentPlayer].inPenaltyBox:
             if roll % 2 != 0:
                 self.isGettingOutOfPenaltyBox = True
                 print(
@@ -109,7 +108,7 @@ class Game:
         return "Rock"
 
     def was_correctly_answered(self) -> bool:
-        if self.inPenaltyBox[self.currentPlayer]:
+        if self.players[self.currentPlayer].inPenaltyBox:
             if self.isGettingOutOfPenaltyBox:
                 print("Answer was correct!!!!")
                 self.currentPlayer += 1
@@ -147,7 +146,7 @@ class Game:
         print(
             repr(self.players[self.currentPlayer]) +
             " was sent to the penalty box")
-        self.inPenaltyBox[self.currentPlayer] = True
+        self.players[self.currentPlayer].inPenaltyBox = True
 
         self.currentPlayer += 1
         if self.currentPlayer == len(self.players):
