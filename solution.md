@@ -82,4 +82,16 @@ class Player:
 ## Each player its own penalty box status
 
 Move `inPenaltyBox` out of the `Game` class into the `Player` class. Next, note that there is no `isGettingOutOfPenaltyBox` variable for each player individually, which probably leads to the bug that once in, you'll never get out!
+
+## Simplify `currentCategory()`
+
+```python
+def currentCategory(self) -> str:
+    rank_category_map = ["Pop", "Science", "Sports", "Rock", "Pop", "Science", "Sports", "Rock", "Pop", "Science", "Sports"]
+    current_player = self.players[self.currentPlayer]
+    if current_player.rank <= 10:
+      return rank_category_map[current_player.rank]
+    else:
+      return "Rock"
+```
   

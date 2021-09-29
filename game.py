@@ -96,16 +96,12 @@ class Game:
             print(self.rockQuestions.popleft())
 
     def currentCategory(self) -> str:
-        if self.players[self.currentPlayer].rank == 0: return "Pop"
-        if self.players[self.currentPlayer].rank == 4: return "Pop"
-        if self.players[self.currentPlayer].rank == 8: return "Pop"
-        if self.players[self.currentPlayer].rank == 1: return "Science"
-        if self.players[self.currentPlayer].rank == 5: return "Science"
-        if self.players[self.currentPlayer].rank == 9: return "Science"
-        if self.players[self.currentPlayer].rank == 2: return "Sports"
-        if self.players[self.currentPlayer].rank == 6: return "Sports"
-        if self.players[self.currentPlayer].rank == 10: return "Sports"
-        return "Rock"
+        rank_category_map = ["Pop", "Science", "Sports", "Rock", "Pop", "Science", "Sports", "Rock", "Pop", "Science", "Sports"]
+        current_player = self.players[self.currentPlayer]
+        if current_player.rank <= 10:
+          return rank_category_map[current_player.rank]
+        else:
+          return "Rock"
 
     def was_correctly_answered(self) -> bool:
         if self.players[self.currentPlayer].inPenaltyBox:
