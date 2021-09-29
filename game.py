@@ -5,6 +5,7 @@ class Player:
   def __init__(self, name: str):
     self.name = name
     self.purse = 0
+    self.rank = 0
 
   def add_coin(self) -> None:
     self.purse += 1
@@ -12,13 +13,17 @@ class Player:
   def has_won(self) -> bool:
     return self.purse == 6
 
+  def add_to_rank(self, amount:int) -> None:
+    self.rank += amount
+    if self.rank > 11:
+        self.rank -= 12
+
   def __repr__(self):
     return self.name
 
 class Game:
     def __init__(self, player1: Player, player2: Player, others:[Player] = []):
         self.players: List[Player] = []
-        self.places: List[int] = [0] * 6 
         self.inPenaltyBox: List[bool] = [False] * 6
 
         # https://realpython.com/linked-lists-python/
@@ -46,7 +51,6 @@ class Game:
 
     def add(self, player: Player) -> bool:
         self.players.append(player)
-        self.places[self.howManyPlayers()] = 0
         self.inPenaltyBox[self.howManyPlayers()] = False
         print(repr(player) + " was added")
         print("They are player number " + str(len(self.players)))
@@ -75,12 +79,10 @@ class Game:
             self.movePlayerAndAskQuestion(roll)
 
     def movePlayerAndAskQuestion(self, roll: int) -> None:
-        self.places[self.currentPlayer] = self.places[self.currentPlayer] + roll
-        if self.places[self.currentPlayer] > 11:
-            self.places[self.currentPlayer] = self.places[self.currentPlayer] - 12
+        self.players[self.currentPlayer].add_to_rank(roll)
 
         print(repr(self.players[self.currentPlayer]) + "'s new location is " +
-            str(self.places[self.currentPlayer]))
+            str(self.players[self.currentPlayer].rank))
         print("The category is " + self.currentCategory())
         self.askQuestion()
 
@@ -95,15 +97,15 @@ class Game:
             print(self.rockQuestions.popleft())
 
     def currentCategory(self) -> str:
-        if self.places[self.currentPlayer] == 0: return "Pop"
-        if self.places[self.currentPlayer] == 4: return "Pop"
-        if self.places[self.currentPlayer] == 8: return "Pop"
-        if self.places[self.currentPlayer] == 1: return "Science"
-        if self.places[self.currentPlayer] == 5: return "Science"
-        if self.places[self.currentPlayer] == 9: return "Science"
-        if self.places[self.currentPlayer] == 2: return "Sports"
-        if self.places[self.currentPlayer] == 6: return "Sports"
-        if self.places[self.currentPlayer] == 10: return "Sports"
+        if self.players[self.currentPlayer].rank == 0: return "Pop"
+        if self.players[self.currentPlayer].rank == 4: return "Pop"
+        if self.players[self.currentPlayer].rank == 8: return "Pop"
+        if self.players[self.currentPlayer].rank == 1: return "Science"
+        if self.players[self.currentPlayer].rank == 5: return "Science"
+        if self.players[self.currentPlayer].rank == 9: return "Science"
+        if self.players[self.currentPlayer].rank == 2: return "Sports"
+        if self.players[self.currentPlayer].rank == 6: return "Sports"
+        if self.players[self.currentPlayer].rank == 10: return "Sports"
         return "Rock"
 
     def was_correctly_answered(self) -> bool:
