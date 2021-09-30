@@ -43,6 +43,7 @@ class Player:
 
   def add_coin(self) -> None:
     self.purse += 1
+    print(repr(self) + " now has " + str(self.purse) + " Gold Coins.")
 
   def has_won(self) -> bool:
     return self.purse == 6
@@ -66,6 +67,7 @@ class Player:
 
   def add_coin(self) -> None:
     self.purse += 1
+    print(repr(self) + " now has " + str(self.purse) + " Gold Coins.")
 
   def has_won(self) -> bool:
     return self.purse == 6
@@ -74,6 +76,7 @@ class Player:
     self.rank += amount
     if self.rank > 11:
         self.rank -= 12
+    print(repr(self) + "'s new location is " + str(self.rank))
 
   def __repr__(self):
     return self.name
@@ -141,3 +144,41 @@ def next_player(self) -> None:
 ```
 
 Now you see that in `was_correctly_answered(self)` coins can be credited to a wrong player, as the next player is determined _first_ after which the coins are credited.
+
+## Create a Players class
+
+```python
+
+class Players:
+  def __init__(self, player1: Player, player2: Player, others:[Player] = []):
+    self.players: List[Player] = []
+    self.add(player1)
+    self.add(player2)
+    for player in others:
+      self.add(player)
+      
+    self.currentPlayer = 0
+    self.current_player = self.players[self.currentPlayer]
+
+  def add(self, player: Player) -> bool:
+    self.players.append(player)
+    print(repr(player) + " was added")
+    print("They are player number " + str(len(self.players)))
+    return True
+
+  def next_player(self) -> None:
+    self.currentPlayer += 1
+    if self.currentPlayer == len(self.players):
+        self.currentPlayer = 0
+    self.current_player = self.players[self.currentPlayer]
+```
+
+which simplifies the `Game` class constructor like this:
+
+```python
+class Game:
+  def __init__(self, player1: Player, player2: Player, others:[Player] = []):
+      self.participants: List[Players] = Players(player1, player2, others)
+      self.questions = Questions()
+      self.isGettingOutOfPenaltyBox: bool = False
+```
