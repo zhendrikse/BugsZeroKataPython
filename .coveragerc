@@ -8,6 +8,6 @@ omit =
     # omit this single file
     *_test.py
 
-include =
-    game_runner.py
-    game.py
+#source =
+#    game_runner.py
+#    game.py
