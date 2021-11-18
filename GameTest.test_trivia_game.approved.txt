@@ -1,1 +1,105 @@
-b"Chet was added\nThey are player number 1\nPat was added\nThey are player number 2\nSue was added\nThey are player number 3\nChet is the current player\nThey have rolled a 5\nChet's new location is 5\nThe category is Science\nScience Question 0\nAnswer was corrent!!!!\nChet now has 1 Gold Coins.\nPat is the current player\nThey have rolled a 5\nPat's new location is 5\nThe category is Science\nScience Question 1\nAnswer was corrent!!!!\nPat now has 1 Gold Coins.\nSue is the current player\nThey have rolled a 5\nSue's new location is 5\nThe category is Science\nScience Question 2\nAnswer was corrent!!!!\nSue now has 1 Gold Coins.\nChet is the current player\nThey have rolled a 5\nChet's new location is 10\nThe category is Sports\nSports Question 0\nAnswer was corrent!!!!\nChet now has 2 Gold Coins.\nPat is the current player\nThey have rolled a 5\nPat's new location is 10\nThe category is Sports\nSports Question 1\nAnswer was corrent!!!!\nPat now has 2 Gold Coins.\nSue is the current player\nThey have rolled a 5\nSue's new location is 10\nThe category is Sports\nSports Question 2\nAnswer was corrent!!!!\nSue now has 2 Gold Coins.\nChet is the current player\nThey have rolled a 5\nChet's new location is 3\nThe category is Rock\nRock Question 0\nAnswer was corrent!!!!\nChet now has 3 Gold Coins.\nPat is the current player\nThey have rolled a 5\nPat's new location is 3\nThe category is Rock\nRock Question 1\nAnswer was corrent!!!!\nPat now has 3 Gold Coins.\nSue is the current player\nThey have rolled a 5\nSue's new location is 3\nThe category is Rock\nRock Question 2\nAnswer was corrent!!!!\nSue now has 3 Gold Coins.\nChet is the current player\nThey have rolled a 5\nChet's new location is 8\nThe category is Pop\nPop Question 0\nQuestion was incorrectly answered\nChet was sent to the penalty box\nPat is the current player\nThey have rolled a 5\nPat's new location is 8\nThe category is Pop\nPop Question 1\nAnswer was corrent!!!!\nPat now has 4 Gold Coins.\nSue is the current player\nThey have rolled a 5\nSue's new location is 8\nThe category is Pop\nPop Question 2\nAnswer was corrent!!!!\nSue now has 4 Gold Coins.\nChet is the current player\nThey have rolled a 5\nChet is getting out of the penalty box\nChet's new location is 1\nThe category is Science\nScience Question 3\nAnswer was correct!!!!\nPat now has 5 Gold Coins.\nPat is the current player\nThey have rolled a 5\nPat's new location is 1\nThe category is Science\nScience Question 4\nAnswer was corrent!!!!\nPat now has 6 Gold Coins.\n"
+Chet was added
+They are player number 1
+Pat was added
+They are player number 2
+Sue was added
+They are player number 3
+Chet is the current player
+They have rolled a 5
+Chet's new location is 5
+The category is Science
+Science Question 0
+Answer was corrent!!!!
+Chet now has 1 Gold Coins.
+Pat is the current player
+They have rolled a 5
+Pat's new location is 5
+The category is Science
+Science Question 1
+Answer was corrent!!!!
+Pat now has 1 Gold Coins.
+Sue is the current player
+They have rolled a 5
+Sue's new location is 5
+The category is Science
+Science Question 2
+Answer was corrent!!!!
+Sue now has 1 Gold Coins.
+Chet is the current player
+They have rolled a 5
+Chet's new location is 10
+The category is Sports
+Sports Question 0
+Answer was corrent!!!!
+Chet now has 2 Gold Coins.
+Pat is the current player
+They have rolled a 5
+Pat's new location is 10
+The category is Sports
+Sports Question 1
+Answer was corrent!!!!
+Pat now has 2 Gold Coins.
+Sue is the current player
+They have rolled a 5
+Sue's new location is 10
+The category is Sports
+Sports Question 2
+Answer was corrent!!!!
+Sue now has 2 Gold Coins.
+Chet is the current player
+They have rolled a 5
+Chet's new location is 3
+The category is Rock
+Rock Question 0
+Answer was corrent!!!!
+Chet now has 3 Gold Coins.
+Pat is the current player
+They have rolled a 5
+Pat's new location is 3
+The category is Rock
+Rock Question 1
+Answer was corrent!!!!
+Pat now has 3 Gold Coins.
+Sue is the current player
+They have rolled a 5
+Sue's new location is 3
+The category is Rock
+Rock Question 2
+Answer was corrent!!!!
+Sue now has 3 Gold Coins.
+Chet is the current player
+They have rolled a 5
+Chet's new location is 8
+The category is Pop
+Pop Question 0
+Question was incorrectly answered
+Chet was sent to the penalty box
+Pat is the current player
+They have rolled a 5
+Pat's new location is 8
+The category is Pop
+Pop Question 1
+Answer was corrent!!!!
+Pat now has 4 Gold Coins.
+Sue is the current player
+They have rolled a 5
+Sue's new location is 8
+The category is Pop
+Pop Question 2
+Answer was corrent!!!!
+Sue now has 4 Gold Coins.
+Chet is the current player
+They have rolled a 5
+Chet is getting out of the penalty box
+Chet's new location is 1
+The category is Science
+Science Question 3
+Answer was correct!!!!
+Pat now has 5 Gold Coins.
+Pat is the current player
+They have rolled a 5
+Pat's new location is 1
+The category is Science
+Science Question 4
+Answer was corrent!!!!
+Pat now has 6 Gold Coins.
