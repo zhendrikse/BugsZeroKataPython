@@ -1,2 +1,2 @@
 onBoot  = "python -m http.server 8000 -d htmlcov"
-run = "coverage run -m game_runner game pytest && coverage report -m && coverage html"
+run = "coverage run -m game_runner game pytest && coverage report -m && coverage html && pytest"
