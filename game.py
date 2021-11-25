@@ -5,7 +5,7 @@ class Player:
   def __init__(self, name: str):
     self.name = name
     self.purse = 0
-    self.rank = 0
+    self.board_position = 0
     self.inPenaltyBox = False
 
   def add_coin(self) -> None:
@@ -15,11 +15,11 @@ class Player:
   def has_won(self) -> bool:
     return self.purse == 6
 
-  def add_to_rank(self, amount:int) -> None:
-    self.rank += amount
-    if self.rank > 11:
-        self.rank -= 12
-    print(repr(self) + "'s new location is " + str(self.rank))
+  def add_to_board_position(self, steps:int) -> None:
+    self.board_position += steps
+    if self.board_position > 11:
+        self.board_position -= 12
+    print(repr(self) + "'s new location is " + str(self.board_position))
 
   def __repr__(self):
     return self.name
@@ -103,10 +103,10 @@ class Game:
             self.movePlayerAndAskQuestion(roll)
 
     def movePlayerAndAskQuestion(self, roll: int) -> None:
-        self.participants.current_player.add_to_rank(roll)
+        self.participants.current_player.add_to_board_position(roll)
 
-        print("The category is " + self.questions.currentCategory(self.participants.current_player.rank))
-        self.questions.ask_question(self.participants.current_player.rank)
+        print("The category is " + self.questions.currentCategory(self.participants.current_player.board_position))
+        self.questions.ask_question(self.participants.current_player.board_position)
 
     def was_correctly_answered(self) -> bool:
         if self.participants.current_player.inPenaltyBox:
